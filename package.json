@@ -1,0 +1,22 @@
+{
+  "name": "snowpack-plugin-run",
+  "version": "0.0.0",
+  "description": "",
+  "main": "plugin.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sam-parsons/snowpack-plugin-run.git"
+  },
+  "author": "Sam Parsons <samparsons269@gmail.com> (http://sam-parsons.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sam-parsons/snowpack-plugin-run/issues"
+  },
+  "homepage": "https://github.com/sam-parsons/snowpack-plugin-run#readme",
+  "devDependencies": {
+    "jest": "26.6.3"
+  }
+}
