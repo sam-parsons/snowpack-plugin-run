@@ -1,7 +1,7 @@
 {
   "name": "snowpack-plugin-run",
   "version": "0.0.1",
-  "description": "",
+  "description": "snowpack plugin that executes shell commands sequentially when the bundle is generated",
   "main": "plugin.js",
   "files": ["plugin.js"],
   "scripts": {
