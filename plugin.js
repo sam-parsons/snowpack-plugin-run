@@ -18,12 +18,14 @@ module.exports = function plugin(config, options) {
         });
       }
 
+      const execaOpts = {
+        cwd: config.root || process.cwd(),
+        shell: true,
+      };
+
       const promiseArray = options.cmd.map((cmd) => {
         // creates instance of workerPromise
-        const worker = execa.command(cmd, {
-          cwd: config.root || process.cwd(),
-          shell: true,
-        });
+        const worker = execa.command(cmd, execaOpts);
 
         // piping outs from worker thread to snowpack process
         const { stdout, stderr } = worker;
