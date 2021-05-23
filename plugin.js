@@ -1,26 +1,28 @@
 const execa = require('execa');
 
 module.exports = function plugin(config, options) {
-  // type checking options.cmd which should be an arry or string
-  // if string, wrap with array literal
-  // if not an array, throw Error
+  if (!options) return new Error('Argument required for plugin');
+  if (typeof options.cmd === 'string') options.cmd = [options.cmd];
+  if (!Array.isArray(options.cmd))
+    return new Error(
+      'Improper plugin argument: use a string or array of strings'
+    );
   return {
     name: 'snowpack-plugin-run',
     async run({ log }) {
-      if (!Array.isArray(options.cmd)) return new Promise(() => {});
       const arr = options.cmd.map((cmd) => {
         const worker = execa.command(cmd, {
           cwd: config.root || process.cwd(),
           shell: true,
         });
-        const { stdout, stderr } = worker;
-        function listener(chunk) {
+        function dataHandler(chunk) {
           log('WORKER_MSG', {
             msg: chunk.toString(),
           });
         }
-        stdout && stdout.on('data', listener);
-        stderr && stderr.on('data', listener);
+        const { stdout, stderr } = worker;
+        stdout && stdout.on('data', dataHandler);
+        stderr && stderr.on('data', dataHandler);
         return worker.then();
       });
 
