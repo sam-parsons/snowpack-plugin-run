@@ -14,15 +14,11 @@ describe('snowpack run script plugin', () => {
         cmd: ['echo "this is a line"', 'echo "this is the second line"'],
       }
     );
-    function log(type, msg) {
-      console.log('type', type);
-      console.log('msg', msg);
-    }
+    const log = jest.fn();
     return obj.run({ log }).then((data) => {
+      expect(log).toHaveBeenCalled();
       expect(data[0].stdout === 'this is a line');
       expect(data[1].stdout === 'this is the second line');
     });
-
-    // pipe stdout to a text file and snapshot test
   });
 });
