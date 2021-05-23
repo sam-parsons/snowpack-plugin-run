@@ -39,7 +39,7 @@ module.exports = {
     [
       'snowpack-plugin-run',
       {
-        cmd: 'echo "this is a single command" >> file.txt',
+        cmd: 'start chrome --new-window http://localhost/',
       },
     ],
   ],
@@ -58,8 +58,10 @@ module.exports = {
       'snowpack-plugin-run',
       {
         cmd: [
-          'echo "this is a line"',
-          'echo "this is the second line"'
+            // Copy index.html from src to public if index.html is not modified
+            'robocopy src public index.html',
+            // Then open the browser
+            'start firefox -new-window "' + path.join(process.cwd(), 'public', 'index.html') + '"'
         ],
       },
     ],
