@@ -1,5 +1,4 @@
 const execa = require('execa');
-const npmRunPath = require('npm-run-path');
 
 module.exports = function plugin(config, options) {
   // type checking options.cmd which should be an arry or string
