@@ -1,9 +1,11 @@
 {
   "name": "snowpack-plugin-run",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "snowpack plugin that executes shell commands sequentially when the bundle is generated",
   "main": "plugin.js",
-  "files": ["plugin.js"],
+  "files": [
+    "plugin.js"
+  ],
   "scripts": {
     "test": "jest"
   },
@@ -22,5 +24,9 @@
     "jest": "26.6.3",
     "npm-run-path": "4.0.1"
   },
-  "keywords": ["snowpack", "snowpack-plugin", "shell"]
+  "keywords": [
+    "snowpack",
+    "snowpack-plugin",
+    "shell"
+  ]
 }
