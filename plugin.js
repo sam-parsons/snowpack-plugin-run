@@ -9,19 +9,19 @@ module.exports = function plugin(config, options) {
     async run({ log }) {
       if (!Array.isArray(options.cmd)) return new Promise(() => {});
       const arr = options.cmd.map((cmd) => {
-        const worker = execa
-          .command(cmd, {
-            cwd: config.root || process.cwd(),
-            shell: true,
-          })
-          .then();
+        const worker = execa.command(cmd, {
+          cwd: config.root || process.cwd(),
+          shell: true,
+        });
         const { stdout, stderr } = worker;
         function listener(chunk) {
-          log('WORKER_MSG', { level: 'log', msg: chunk.toString() });
+          log('WORKER_MSG', {
+            msg: chunk.toString(),
+          });
         }
         stdout && stdout.on('data', listener);
         stderr && stderr.on('data', listener);
-        return worker;
+        return worker.then();
       });
 
       return Promise.all(arr);
